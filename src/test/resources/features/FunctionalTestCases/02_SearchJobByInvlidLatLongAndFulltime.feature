@@ -1,6 +1,6 @@
 Feature: Search Positions With Lat And Long And Fulltime
 
-  Scenario Outline: Verify the position returned using the lat And long And full_time parameters
+  Scenario Outline: Verify the position returned using the lat And Invalid long And full_time parameters
     Given call job link using three parameters lat with value <LatValue> and long with value <InvalidLongValue> and full_time with value <FulltimeValue>
     When execute job github api
     Then validate the response 200 is returned
