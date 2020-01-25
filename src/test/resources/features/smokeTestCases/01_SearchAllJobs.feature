@@ -1,4 +1,3 @@
-@smoke
 Feature: Search All Positions
 
   Scenario: Verify searching all positions.

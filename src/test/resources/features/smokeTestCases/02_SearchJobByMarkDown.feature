@@ -1,4 +1,3 @@
-@smoke
 Feature: Search Positions With MarkDown Param
 
   Scenario Outline: Verify the position returned using the markdown parameter

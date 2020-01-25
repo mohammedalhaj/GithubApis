@@ -1,5 +1,7 @@
 package stepsdef;
 
+import java.io.IOException;
+
 import org.testng.Assert;
 
 import httpmethods.GetMethod;
@@ -25,15 +27,16 @@ public class GetSteps {
 	}
 
 	@Then("validate the response data is not null")
-	public void verifyFromResponseData() {
+	public void verifyFromResponseData() throws IOException {
 		System.out.println("Check that the response is not null");
 		Assert.assertNotEquals(getMethod.getResponseData(), "[]");
 	}
 
 	@Then("validate the response data is null")
-	public void verifyNullFromResponseData() {
+	public void verifyNullFromResponseData() throws IOException {
 		System.out.println("Check that the response is null");
-		Assert.assertEquals(getMethod.getResponseData(), "[]");
+		Assert.assertTrue(getMethod.getResponseData().contains("f1d23bb"));
+		//Assert.assertEquals(getMethod.getResponseData(), "[]");
 	}
 
 }

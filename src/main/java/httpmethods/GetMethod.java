@@ -1,12 +1,16 @@
 package httpmethods;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.apache.http.ParseException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
+
 import util.PropertyData;
 
 public class GetMethod {
@@ -84,16 +88,20 @@ public class GetMethod {
 		return response.getStatusLine().getStatusCode();
 	}
 
-	public String getResponseData() {
+	public String getResponseData() throws IOException {
 		String responseData = null;
-		try {
-			responseData = EntityUtils.toString(response.getEntity(), "UTF-8");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return responseData;
+	//	String line = null;
+			// responseData = EntityUtils.toString(response.getEntity(), "UTF-8");
+			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+			//System.out.println(rd.readLine());
+			//String	line = rd.readLine();
+			//System.out.println(line);
+			JSONObject json = new JSONObject(rd.readLine().toString());
+			System.out.println(json.getString("description"));
+			return json.getString("id");
+//			while ((line = rd.readLine()) != null) {
+//				// System.out.println(line);
+//			}
 	}
 
 }
